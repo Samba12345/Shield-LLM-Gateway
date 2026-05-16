@@ -46,25 +46,25 @@ The diagram below illustrates how Shield LLM Gateway intercepts, sanitizes, and 
 
 ```mermaid
 graph TD
-    subgraph Client_Layer [Client Layer]
+    subgraph Client_Layer ["Client Layer"]
         C[App / SDK / UI]
     end
 
-    subgraph Shield_Gateway [Shield LLM Gateway (Node.js/Express)]
+    subgraph Shield_Gateway ["Shield LLM Gateway (Node.js/Express)"]
         direction TB
         E[API Endpoint] --> P[Request Parser]
-        P --> DLP[DLP Scanner (PII/Key Detection)]
+        P --> DLP["DLP Scanner (PII/Key Detection)"]
         DLP --> RED[Redaction Logic]
         RED --> AL[Audit Logger]
         AL -.-> DB[(SQLite Persistence)]
         RED --> LLM_C[LLM Connector]
     end
 
-    subgraph Upstream_AI [Upstream AI Provider]
+    subgraph Upstream_AI ["Upstream AI Provider"]
         LLM_C --> UP[Upstream API]
     end
 
-    subgraph Monitoring_Layer [Monitoring & Dashboard]
+    subgraph Monitoring_Layer ["Monitoring & Dashboard"]
         DB -.-> AD[Analytics Engine]
         AD --> RE[Recharts visualization]
     end
