@@ -1,0 +1,6 @@
+{
+  "name": "Shield LLM Gateway",
+  "description": "Enterprise-grade secure AI proxy with DLP redaction, audit logging, and usage analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
