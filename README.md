@@ -42,44 +42,16 @@ const msg = await anthropic.messages.create({
 ## 📐 System Architecture
 
 ### High-Level Data Flow
-The diagram below illustrates how Shield LLM Gateway intercepts, sanitizes, and audits traffic between your internal applications and the upstream LLM. (This diagram is rendered natively by GitHub).
+The diagram below illustrates how Shield LLM Gateway intercepts, sanitizes, and audits traffic between your internal applications and the upstream LLM.
 
-```mermaid
-graph TD
-    subgraph Client_Layer ["Client Layer"]
-        C[App / SDK / UI]
-    end
-
-    subgraph Shield_Gateway ["Shield LLM Gateway (Node.js/Express)"]
-        direction TB
-        E[API Endpoint] --> P[Request Parser]
-        P --> DLP["DLP Scanner (PII/Key Detection)"]
-        DLP --> RED[Redaction Logic]
-        RED --> AL[Audit Logger]
-        AL -.-> DB[(SQLite Persistence)]
-        RED --> LLM_C[LLM Connector]
-    end
-
-    subgraph Upstream_AI ["Upstream AI Provider"]
-        LLM_C --> UP[Upstream API]
-    end
-
-    subgraph Monitoring_Layer ["Monitoring & Dashboard"]
-        DB -.-> AD[Analytics Engine]
-        AD --> RE[Recharts visualization]
-    end
-
-    UP --> LLM_C
-    LLM_C --> E
-    E --> C
-```
+![Shield System Architecture](resources/system_architecture.png)
 
 ### 📸 Application Demos
 To see Shield LLM Gateway in action, you can view the integrated dashboard.
 
 | Secure Gateway | Analytics Dashboard |
 | :---: | :---: |
-| ![Shield Secure Proxy View](secure_proxy_view.png) | ![Shield Analytics Dashboard](analytics_dashboard_view.png) |
+| ![Shield Secure Proxy View](resources/secure_proxy_view.png) | ![Shield Analytics Dashboard](resources/analytics_dashboard_view.png) |
 
 ### Detailed Component Flow
 1.  **Ingress Interception**: The proxy receives requests via standard LLM endpoints (`/v1/chat/completions`).
