@@ -2,9 +2,9 @@
 
 Shield LLM Gateway is a high-performance enterprise security proxy and middleware layer for large language models. It provides real-time Data Loss Prevention (DLP), audit logging, and usage analytics with a focus on zero-latency overhead.
 
-## 🚀 Drop-in Compatibility
+## 🚀 Drop-in Integration
 
-This middleware is engineered to be a drop-in replacement for standard LLM providers. By simply changing the `baseURL`, team members can use their existing OpenAI or Anthropic SDK code while gaining enterprise-grade auditing.
+The Shield LLM Gateway acts as a compatible security layer for standard LLM providers. By simply updating the `baseURL` in their existing code, team members can route traffic through this gateway to gain enterprise-grade auditing and DLP redaction without changing their existing LLM provider.
 
 ### OpenAI SDK (Python)
 ```python
